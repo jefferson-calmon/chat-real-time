@@ -1,0 +1,254 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto';
+}
+
+.container{
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: auto 25vw ;
+}
+
+#left-bar{
+    background: #0F0F13;
+    padding: 1.181vw 2.362vw;
+    color: #f5f5f5;
+    /* text-align: center; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#left-bar h2{
+    /* text-align: center; */
+    margin-bottom: 4.724vw;
+    font-size: 1.890vw;
+}
+
+#left-bar #online{
+    color: #b6b6b6;
+    font-size: 1.417vw;
+    margin-bottom: 1.575vw;
+}
+
+#left-bar #online i{
+    color: #00ff00;
+    font-size: 0.945vw;
+    margin-right: 0.787vw;
+    text-shadow: 0 0 0.787vw #00ff00;
+}
+
+#left-bar #messages-received{
+    color: #b6b6b6;
+    font-size: 1.417vw;
+    margin-bottom: 1.575vw;
+}
+
+#left-bar #messages-received i{
+    color: #f1f1f1;
+    font-size: 1.181vw;
+    margin-right: 0.787vw;
+    text-shadow: 0 0 0.787vw #f1f1f1;
+}
+
+#left-bar #credits a{
+    text-decoration: none;
+    color: inherit;
+}
+
+#left-bar #credits a:hover{
+    text-decoration: underline;
+}
+
+#left-bar #credits h3{
+    color: #b6b6b6;
+    font-size: 1.417vw;
+    margin-bottom: 1.575vw;
+}
+
+#left-bar #credits h3 i{
+    color: #f1f1f1;
+    font-size: 1.732vw;
+    margin-right: 0.787vw;
+    /* text-shadow: 0 0 0.394vw #f1f1f1; */
+}
+
+#chat-area{
+    background: #222429;
+}
+
+#messages{
+    min-height: 88vh;
+    max-height: 88vh;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+#messages .message{
+    padding: 1.575vw;
+    padding-left: 3.937vw;
+    min-height: 7.874vw;
+    /* border: 0.079vw solid #ddd; */
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+#messages .message .user-image{
+    margin-right: 1.575vw;
+}
+
+#messages .message .user-image i{
+    font-size: 3.543vw;
+    color: #8E9094;
+
+}
+
+#messages .message::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 0.079vw;
+    background: #5F5F61;
+    border-radius: 3.937vw;
+}
+
+#messages .message h2{
+    color: #fff;
+    font-size: 1.575vw;
+    margin-bottom: 0.787vw;
+}
+
+#messages .message h2 span{
+    font-size: 1.024vw;
+    margin-left: 0.236vw;
+    color: #ddd;
+    font-weight: 300;
+}
+
+#messages .message p{
+    color: #8E9094;
+    padding-left: 0.551vw;
+}
+
+#send-messages {
+    height: 12vh;
+    background: #141419;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+#send-messages input{
+    width: 98%;
+    height: 70%;
+    background: #333539;
+    border: 0.157vw solid #646464;
+    outline: none;
+    border-radius: 0.787vw;
+    font-size: 1.417vw;
+    padding-left: 1.181vw;
+    color: #f5f5f5;
+}
+
+#send-messages button{
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+#send-messages i{
+    position: absolute;
+    right: 3%;
+    font-size: 1.969vw;
+    color: #8E9094;
+    cursor: pointer;
+}
+
+#send-messages i:hover{
+    color: #fff;
+}
+
+#enter-user{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    z-index: 1000000000;
+    background: #222429;
+    display: none;
+}
+
+#enter-user.active{
+    display: grid;
+}
+
+#enter-user .content{
+    height: 70vh;
+    width: 45vw;
+    background: #141419;
+    box-shadow: 0 0 2.362vw #000;
+    border-radius: 1.181vw;
+    color: #f1f1f1;
+    padding: 3.937vw 1.969vw;
+}
+
+#enter-user .content h1{
+    font-family: 'Ubuntu', sans-serif;
+    margin-bottom: 3.150vw;
+}
+
+#enter-user .content p{
+    font-size: 1.260vw;
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 300;
+    color: #ddd;
+    letter-spacing: 0.039vw;
+}
+
+#enter-user .content input{
+    width: 100%;
+    height: 3.937vw;
+    font-size: 1.575vw;
+    border: 0.157vw solid #0F0F13;
+    outline: none;
+    background: #8e90945b;
+    border-radius: 0.787vw;
+    padding:0 1.575vw;
+    margin-top: 0.787vw;
+    /* color: #fff; */
+    font-weight: 500;
+    letter-spacing: 0.079vw;
+}
+
+#enter-user .content button{
+    margin-top: 2.362vw;
+    border: none;
+    /* outline: none; */
+    outline-color: #fff;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1.181vw 3.150vw;
+    background: #262626;
+    font-size: 1.417vw;
+    color: #f1f1f1;
+    border-radius: 0.394vw;
+    cursor: pointer;
+}
