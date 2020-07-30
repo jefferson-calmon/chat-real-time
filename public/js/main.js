@@ -41,8 +41,7 @@ function toggleBoxForNewUser(met){
     }
     if(met === 'get'){
         let newUser = document.getElementById('input-user').value
-
-        alert(newUser)
+        
         localStorage.setItem('user', newUser)
         author = newUser
         toggleBoxForNewUser('tog')

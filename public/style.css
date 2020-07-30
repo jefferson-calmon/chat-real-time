@@ -252,3 +252,19 @@
     border-radius: 0.394vw;
     cursor: pointer;
 }
+
+@media (max-width: 768px){
+    #left-bar{
+        position: absolute;
+        right: 0;
+        height: 100vh;
+        width: 50vw;
+    }
+
+    .container{
+        grid-template-columns: 100% 25vw ;
+    }
+
+    #chat-area{
+    }
+}
