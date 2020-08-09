@@ -20,7 +20,7 @@ function getAuthor(){
 }
 
 function renderMessage(message) {
-    $('.messages').append(`<div class="message"><div class="user-image"><i class="fal fa-user-circle"></i></div><div><h2>${message.author}<span> - ${message.time}</span></h2> <p>${message.message}</p></div></div>`)
+    $('.messages').append(`<div class="message"><div class="user-image"><i class="fal fa-user-circle"></i></div><div><h2>${message.author}<span>${message.time}</span></h2> <p aria-expanded="true">${message.message}</p></div></div>`)
 
     info.numberMessages += 1;
     moveScroll()
@@ -40,7 +40,12 @@ function toggleBoxForNewUser(met){
         input.focus()
     }
     if(met === 'get'){
-        let newUser = document.getElementById('input-user').value
+        let newUser = document.getElementById('input-user').value;
+
+        if (newUser.length < 4 ){
+            alert('Erro ao cadastrar usuário, tente um nome mais longo.')
+            return null
+        }
         
         localStorage.setItem('user', newUser)
         author = newUser
@@ -101,5 +106,16 @@ function Submit(event){
         moveScroll()
 
         socket.emit('sendMessage', messageObject);
-    }
+    } 
 };
+
+function handleToggleLeftBar(){
+    const bar = document.querySelector('#left-bar');
+    const chat = document.querySelector('#chat-area');
+    const icon = document.querySelector('#toggleInfo');
+
+    bar.classList.toggle('active');
+    chat.classList.toggle('active');
+
+    icon.className = icon.className === 'fal fa-info-circle' ? 'fal fa-times' : 'fal fa-info-circle';
+}

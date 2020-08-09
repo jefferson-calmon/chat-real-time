@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 
+var port = 4000;
 const app = express();
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
@@ -14,13 +15,16 @@ app.use('/', (req, res) => {
     res.render('index.html');
 });
 
+
+console.log(`\nServer running in: ${port}`)
+
+
 let messages = []
 let connectionsInfo = {
     connections: 0
 }
 
 io.on('connection', socket => {
-    console.log(`Socket conectado: ${socket.id}`);
 
     connectionsInfo.connections = server.getConnections((err, count) => {
         return count;
@@ -35,4 +39,4 @@ io.on('connection', socket => {
     })
 });
 
-server.listen(process.env.PORT || 4000);
+server.listen(process.env.PORT || port);
