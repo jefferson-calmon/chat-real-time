@@ -1,7 +1,7 @@
 <div align="center">
     <h1>Chat em Tempo Real</h1>
     <p>Uma incrível sala de bate-papo online em tempo real.</p>
-    <img src="./.github/images/capa.png" width="500">
+    <img src="./.github/images/capa.png" width="650">
 </div>
 
 
