@@ -5,7 +5,7 @@
 </div>
 
 
-## :desktop-computer: Projeto
+## :desktop_computer: Projeto
 
 Plataforma de bate-papo criada com javascript, com o intuito de testar conhecimentos de desenvolvimento.
 
@@ -23,7 +23,7 @@ Plataforma de bate-papo criada com javascript, com o intuito de testar conhecime
 
 ## :dart: Utilização
 
-**[Acesse a plataforma web clicando aqui]()**
+**[Acesse a plataforma web clicando aqui](https://talking-chat.herokuapp.com/)**
 
 ou
 
