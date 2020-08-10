@@ -360,7 +360,7 @@
    }
 
     #messages{
-        max-height: 90vh;
+        max-height: 80vh;
     }
 
     #initialMessage{
@@ -406,7 +406,10 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        position: relative;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        z-index: 1000000;
     }
 
     #send-messages input{
