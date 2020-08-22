@@ -1,42 +1,42 @@
-const express = require('express');
-const path = require('path');
+const express = require( 'express' )
+const app = express()
+const path = require( 'path' )
 
-var port = 4000;
-const app = express();
-const server = require('http').createServer(app);
-const io = require('socket.io')(server);
+const { join } = path
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.set('views', path.join(__dirname, 'public'))
-app.engine('html', require('ejs').renderFile);
-app.set('view engine', 'html');
+const port = process.env.PORT || 4000
+const server = require( 'http' ).createServer( app )
+const io = require( 'socket.io' )( server )
 
-app.use('/', (req, res) => {
-    res.render('index.html');
-});
+app.use( express.static( join( __dirname , 'public' ) ) )
+app.set( 'views' , join( __dirname , 'public' ) )
+app.engine( 'html' , require('ejs').renderFile )
+app.set( 'view engine' , 'html' )
 
-
-console.log(`\nServer running in: ${port}`)
-
+app.use( '/' , ( req , res ) => {
+  res.render( 'index.html' )
+} )
 
 let messages = []
 let connectionsInfo = {
-    connections: 0
+  connections: 0
 }
 
-io.on('connection', socket => {
+io.on( 'connection' , socket => {
 
-    connectionsInfo.connections = server.getConnections((err, count) => {
-        return count;
-    });
-    
-    socket.emit('ConnectionsInfo', connectionsInfo)
-    socket.emit('previousMessages', messages)
+  connectionsInfo.connections = server.getConnections( ( err , count ) => {
+    return count
+  } )
 
-    socket.on('sendMessage', data => {
-        messages.push(data);
-        socket.broadcast.emit('receivedMessage', data);
-    })
-});
+  socket.emit( 'ConnectionsInfo' , connectionsInfo )
+  socket.emit( 'previousMessages' , messages )
 
-server.listen(process.env.PORT || port);
+  socket.on( 'sendMessage' , data => {
+    messages.push( data )
+    socket.broadcast.emit( 'receivedMessage' , data )
+  } )
+} )
+
+server.listen( port , () => {
+  console.log( `Server running on localhost:${port}` )
+} )
