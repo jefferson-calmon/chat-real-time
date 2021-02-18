@@ -19,13 +19,52 @@ function getAuthor(){
     }
 }
 
+function generateMessageTemplate({ message, author, time }) {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('message');
+
+    const userImageElement = document.createElement('div');
+    userImageElement.classList.add('user-image');
+
+    const userIconElement = document.createElement('i');
+    userIconElement.classList.add('fal');
+    userIconElement.classList.add('fa-user-circle');
+
+    userImageElement.appendChild(userIconElement);
+
+    const messageContentElement = document.createElement('div');
+
+    const authorInfoElement = document.createElement('h2');
+    authorInfoElement.textContent = author;
+
+    const messageTimeElement = document.createElement('span');
+    messageTimeElement.textContent = time;
+
+    authorInfoElement.appendChild(messageTimeElement);
+
+    const messageTextElement = document.createElement('p');
+    messageTextElement.setAttribute('aria-expanded', true);
+    messageTextElement.textContent = message;
+
+    messageContentElement.appendChild(authorInfoElement);
+    messageContentElement.appendChild(messageTextElement);
+
+    messageElement.appendChild(userImageElement);
+    messageElement.appendChild(messageContentElement);
+
+    return messageElement;
+}
+
 function renderMessage(message) {
-    $('.messages').append(`<div class="message"><div class="user-image"><i class="fal fa-user-circle"></i></div><div><h2>${message.author}<span>${message.time}</span></h2> <p aria-expanded="true">${message.message}</p></div></div>`)
+    const messagesContainer = document.querySelector('.messages');
+    const messageTemplate = generateMessageTemplate(message);
+
+    messagesContainer.appendChild(messageTemplate);
 
     info.numberMessages += 1;
-    moveScroll()
-    renderConnectionsInfo()
-};
+    moveScroll();
+    renderConnectionsInfo();
+}
 
 function renderConnectionsInfo(){
     $('#online').html(`<h3><i class="fas fa-circle"></i> ${info.conected} Online</h3>`)
