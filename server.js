@@ -27,7 +27,7 @@ io.on( 'connection' , socket => {
   connectionsInfo.connections = server.getConnections( ( err , count ) => {
     return count
   } )
-
+  
   socket.emit( 'ConnectionsInfo' , connectionsInfo )
   socket.emit( 'previousMessages' , messages )
 

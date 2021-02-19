@@ -1,10 +1,28 @@
 var socket = io('/');
 var info = {
     numberMessages: 0,
-    conected: 0
+    connected: 0
 }
 var author = ''
 
+
+socket.on('receivedMessage', function(message){
+    renderMessage(message)
+});
+
+socket.on('previousMessages', function(messages){
+    for (message of messages){
+        renderMessage(message)
+    };
+
+    renderConnectionsInfo()
+
+});
+
+socket.on('ConnectionsInfo', function(connectionsInfo){
+    info.connected = connectionsInfo.connections._connections;
+    renderConnectionsInfo();
+})
 
 getAuthor()
         
@@ -28,7 +46,7 @@ function renderMessage(message) {
 };
 
 function renderConnectionsInfo(){
-    $('#online').html(`<h3><i class="fas fa-circle"></i> ${info.conected} Online</h3>`)
+    $('#online').html(`<h3><i class="fas fa-circle"></i> ${info.connected} Online</h3>`)
 
     $('#messages-received').html(`<h3 id="messages-received"><i class="fad fa-inbox-in"></i> ${info.numberMessages} Mensagens</h3>`)
 }
@@ -53,37 +71,17 @@ function toggleBoxForNewUser(met){
     }
 }
 
-socket.on('receivedMessage', function(message){
-    renderMessage(message)
-});
-
-socket.on('previousMessages', function(messages){
-    for (message of messages){
-        renderMessage(message)
-    };
-
-    renderConnectionsInfo()
-
-});
-
-socket.on('ConnectionsInfo', function(connectionsInfo){
-    info.conected = connectionsInfo.connections._connections;
-    renderConnectionsInfo();
-})
-
 function moveScroll(){
     var objDiv = document.getElementById("messages");
     objDiv.scrollTop = objDiv.scrollHeight;
 }
 
 function Submit(event){
-
-
     event.preventDefault();
 
     getAuthor()
 
-    var message = $('input[name=message]').val()
+    var message = document.querySelector('input[name=message]').value;
     $('#input-message').val('')
 
     if(message.length){
@@ -97,9 +95,9 @@ function Submit(event){
         };
 
         var messageObject = {
-            author: author,
-            message: message,
-            time: time
+            author,
+            message,
+            time,
         }
 
         renderMessage(messageObject)
