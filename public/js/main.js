@@ -87,7 +87,7 @@ function renderMessage(message) {
 function renderConnectionsInfo(){
     $('#online').html(`<h3><i class="fas fa-circle"></i> ${info.connected} Online</h3>`)
 
-    $('#messages-received').html(`<h3 id="messages-received"><i class="fad fa-inbox-in"></i> ${info.numberMessages} Mensagens</h3>`)
+    $('#messages-received').html(`<h3 id="messages-received"><i class="fad fa-inbox-in"></i> ${info.numberMessages} ${info.numberMessages === 1 ? "Mensagem" : "Mensagens"}</h3>`)
 }
 
 function toggleBoxForNewUser(met){
